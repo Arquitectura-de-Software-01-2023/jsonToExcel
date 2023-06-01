@@ -1,0 +1,35 @@
+service: aws-lambda-sec-report
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.9
+  region: us-west-2
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action: 
+        - "s3:PutObject" 
+        - "s3:GetObject"
+      Resource: { "Fn::Join": ["", ["arn:aws:s3:::my-custom-bucket-one-emer", "/*" ] ] }
+  
+
+functions:
+  testing-py:
+    handler: jsonToExcel.lambda_handler
+    events:
+      - httpApi:
+          path: /send
+          method: post
+      
+ 
+resources:
+  Resources:
+    Demobucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: my-custom-bucket-one-emer
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true
