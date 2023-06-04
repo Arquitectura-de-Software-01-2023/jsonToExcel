@@ -35,4 +35,24 @@ https://drive.google.com/file/d/1VTrDxZxMdbo7lAhTrJPwMnmYqZAtjsru/view?usp=shari
 
 6. Dirigite a capas y asigna el layer creado anteriormente.
 
+7. Dirigete a la carpeta de email-python cambia la dirección de correo por un correo que este verificado en tu SES.
+8. Haz deploy del proyecto
+
+## Formato de datos
+
+La función jsonToExcel espera una estructura json que contiene una lista con la siguiente estructura:
+
+JSON
+{
+  [
+    {
+      "number": "number",
+      "top": "string",
+      "questions": ["string", "string", "string"],
+      "answers": ["number", "number", "number"]
+    }
+  ]
+}
+
+
 
